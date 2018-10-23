@@ -89,7 +89,7 @@ def symbol_to_currency(symbol):
 
     symbols = {
         "$": "USD",
-        "€": "USD",
+        "€": "EUR",
         "£": "GBP",
         "¥": "JPY",
         "C$": "CAN",
@@ -117,15 +117,15 @@ def symbol_to_currency(symbol):
 def save_to_redis(key, data):
 
     redis_config = {
-        'host': 'redis-19487.c55.eu-central-1-1.ec2.cloud.redislabs.com',
-        'port': 19487,
-        'password': 'VTyUGjlqZwlLmVFdjwMfPDzkO3tGiAsZ',
+        'host': 'redis-16600.c55.eu-central-1-1.ec2.cloud.redislabs.com',
+        'port': 16600,
+        'password': 'F2IqKXu33Jl3Bduf4Y85qD2Zaczr1Z3F',
     }
 
     try:
 
         redis = StrictRedis(socket_connect_timeout=3, **redis_config)
-        redis.setex(key, 1 * 60, json.dumps(data))
+        redis.setex(key, 60 * 60, json.dumps(data))
 
     except Exception:
 
@@ -137,9 +137,9 @@ def load_from_redis(key):
     data = None
 
     redis_config = {
-        'host': 'redis-19487.c55.eu-central-1-1.ec2.cloud.redislabs.com',
-        'port': 19487,
-        'password': 'VTyUGjlqZwlLmVFdjwMfPDzkO3tGiAsZ',
+        'host': 'redis-16600.c55.eu-central-1-1.ec2.cloud.redislabs.com',
+        'port': 16600,
+        'password': 'F2IqKXu33Jl3Bduf4Y85qD2Zaczr1Z3F',
     }
 
     try:
